@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PRODESAL Castro - Tu Centro de Información</title>
+    
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#10B981">
+    <meta name="description" content="Tu centro de información personalizado con clima, noticias y manejo sanitario">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/png" sizes="192x192" href="assets/icon-192.png">
+    <link rel="apple-touch-icon" href="assets/icon-192.png">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+    <!-- Header Principal -->
+    <header class="app-header">
+        <div class="header-content">
+            <div class="header-info">
+                <h1 class="app-title">
+                    <img src="assets/div pecuaria.png" alt="PRODESAL CASTRO" class="prodesal-logo">
+                    PRODESAL de Castro
+                </h1>
+                <p class="app-subtitle">Información agrícola y ganadera de Castro, Chiloé</p>
+            </div>
+            <div class="header-actions">
+                <button class="notification-btn" id="notificationBtn">
+                    <i data-lucide="bell"></i>
+                    <span class="notification-badge">3</span>
+                </button>
+                <button class="settings-btn" id="settingsBtn">
+                    <i data-lucide="settings"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Barra de Búsqueda Global -->
+    <div class="search-section">
+        <div class="search-container">
+            <i data-lucide="search" class="search-icon"></i>
+            <input type="text" 
+                   class="search-input" 
+                   placeholder="¿Qué quieres saber hoy?"
+                   id="globalSearch">
+            <button class="search-filter-btn" id="searchFilter">
+                <i data-lucide="filter"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Navegación Principal -->
+    <nav class="main-navigation">
+        <div class="nav-container">
+            <button class="nav-tab active" data-section="dashboard">
+                <i data-lucide="home"></i>
+                <span>Inicio</span>
+            </button>
+            <button class="nav-tab" data-section="weather">
+                <i data-lucide="calendar-check"></i>
+                <span>Actividades PRODESAL</span>
+            </button>
+            <button class="nav-tab" data-section="news">
+                <i data-lucide="newspaper"></i>
+                <span>Noticias</span>
+            </button>
+            <button class="nav-tab" data-section="animals">
+                <i data-lucide="heart"></i>
+                <span>Animales</span>
+            </button>
+            <button class="nav-tab" data-section="plants">
+                <i data-lucide="sprout"></i>
+                <span>Plantas</span>
+            </button>
+            <button class="nav-tab" data-section="tizon">
+                <i data-lucide="shield-alert"></i>
+                <span>Tizón Tardío</span>
+            </button>
+            <button class="nav-tab" data-section="products">
+                <i data-lucide="shopping-bag"></i>
+                <span>Productos</span>
+            </button>
+            <button class="nav-tab" data-section="guia-telefonica">
+                <i data-lucide="phone"></i>
+                <span>Guía Telefónica</span>
+            </button>
+            <button class="nav-tab" data-section="personal">
+                <i data-lucide="edit"></i>
+                <span>Personal</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Contenido Principal -->
+    <main class="main-content">
+        <!-- Dashboard Principal -->
+        <section id="dashboard-section" class="content-section active">
+            <div class="dashboard-grid">
+                <!-- Tarjeta de Clima -->
+                <div class="dashboard-card weather-card" data-section="weather">
+                    <div class="card-header">
+                        <i data-lucide="cloud-sun" class="card-icon weather-icon"></i>
+                        <h2>Clima</h2>
+                    </div>
+                    <div class="card-content">
+                        <div class="weather-main">
+                            <span class="temperature">25°C</span>
+                            <span class="weather-condition">Soleado</span>
+                        </div>
+                        <div class="weather-details">
+                            <p>Humedad: 65%</p>
+                            <p>Viento: 15 km/h</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tarjeta de Noticias -->
+                <div class="dashboard-card news-card" data-section="news">
+                    <div class="card-header">
+                        <i data-lucide="newspaper" class="card-icon news-icon"></i>
+                        <h2>Noticias</h2>
+                    </div>
+                    <div class="card-content">
+                        <div class="news-latest">
+                            <h3>Tus noticias</h3>
+                            <p>Agrega tu contenido personalizado</p>
+                        </div>
+                        <div class="news-categories">
+                            <span class="category-tag">Personal</span>
+                            <span class="category-tag">Actualizable</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tarjeta de Animales -->
+                <div class="dashboard-card animals-card" data-section="animals">
+                    <div class="card-header">
+                        <i data-lucide="heart" class="card-icon animals-icon"></i>
+                        <h2>Salud Animal</h2>
+                    </div>
+                    <div class="card-content">
+                        <div class="animal-info">
+                            <h3>Información Veterinaria</h3>
+                            <p>12 guías disponibles</p>
+                        </div>
+                        <div class="animal-categories">
+                            <span class="category-tag">Vacunación</span>
+                            <span class="category-tag">Nutrición</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tarjeta de Plantas -->
+                <div class="dashboard-card plants-card" data-section="plants">
+                    <div class="card-header">
+                        <i data-lucide="sprout" class="card-icon plants-icon"></i>
+                        <h2>Salud Vegetal</h2>
+                    </div>
+                    <div class="card-content">
+                        <div class="plant-info">
+                            <h3>Guía Agrícola</h3>
+                            <p>8 recursos disponibles</p>
+                        </div>
+                        <div class="plant-categories">
+                            <span class="category-tag">Plagas</span>
+                            <span class="category-tag">Fertilización</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tarjeta de Tizón Tardío -->
+                <div class="dashboard-card tizon-card" data-section="tizon">
+                    <div class="card-header">
+                        <i data-lucide="shield-alert" class="card-icon tizon-icon"></i>
+                        <h2>Tizón Tardío</h2>
+                    </div>
+                    <div class="card-content">
+                        <div class="tizon-status">
+                            <h3>Monitoreo INIA</h3>
+                            <div class="tizon-stations-summary">
+                                <div class="station-status">
+                                    <span class="station-name">PIDPID</span>
+                                    <span class="alert-badge verde">VERDE</span>
+                                </div>
+                                <div class="station-status">
+                                    <span class="station-name">QUILQUICO</span>
+                                    <span class="alert-badge sin-datos">SIN DATOS</span>
+                                </div>
+                                <div class="station-status">
+                                    <span class="station-name">CHELIN</span>
+                                    <span class="alert-badge verde">VERDE</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Actividades PRODESAL -->
+        <section id="weather-section" class="content-section">
+            <div class="section-header">
+                <h2>
+                    <i data-lucide="calendar-check" class="section-icon weather-icon"></i>
+                    Actividades PRODESAL
+                </h2>
+                <p class="section-subtitle">Calendario y actividades del programa</p>
+            </div>
+            <div class="activities-content">
+                <div class="activities-container">
+                    <div class="empty-state">
+                        <i data-lucide="calendar-plus" class="empty-icon"></i>
+                        <h3>No hay actividades programadas</h3>
+                        <p>¡Agrega la primera actividad de PRODESAL!</p>
+                        <button class="btn-primary" id="addActivityBtn">
+                            <i data-lucide="plus"></i>
+                            Agregar Actividad
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Noticias -->
+        <section id="news-section" class="content-section">
+            <div class="section-header">
+                <h2>
+                    <i data-lucide="newspaper" class="section-icon news-icon"></i>
+                    Noticias
+                </h2>
+                <p class="section-subtitle">Últimas noticias y actualizaciones</p>
+            </div>
+            <div class="news-container">
+                <div class="news-filters">
+                    <button class="filter-btn active" data-filter="todas">Todas</button>
+                    <button class="filter-btn" data-filter="indap">INDAP</button>
+                    <button class="filter-btn" data-filter="sag">SAG</button>
+                    <button class="filter-btn" data-filter="municipalidad">Municipalidad</button>
+                    <button class="filter-btn" data-filter="insular">El Insular</button>
+                </div>
+                <div class="news-list">
+                    <!-- Noticias predefinidas de fuentes oficiales -->
+                    <article class="news-item" data-category="indap">
+                        <div class="news-meta">
+                            <span class="news-source">INDAP</span>
+                            <span class="news-date">Hoy</span>
+                        </div>
+                        <h3 class="news-title">Programa de Desarrollo Local beneficia a agricultores de Castro</h3>
+                        <p class="news-content">El Instituto de Desarrollo Agropecuario (INDAP) anunció la ampliación del programa de desarrollo local para pequeños agricultores de la comuna de Castro, Chiloé. La iniciativa contempla asistencia técnica especializada y acceso a créditos blandos para fortalecer la producción agrícola regional.</p>
+                        <div class="news-actions">
+                            <button class="news-action-btn">
+                                <i data-lucide="external-link"></i>
+                                Ver más en INDAP
+                            </button>
+                        </div>
+                    </article>
+
+                    <article class="news-item" data-category="municipalidad">
+                        <div class="news-meta">
+                            <span class="news-source">Municipalidad de Castro</span>
+                            <span class="news-date">Ayer</span>
+                        </div>
+                        <h3 class="news-title">Nueva política municipal para el fortalecimiento del sector agrícola</h3>
+                        <p class="news-content">La Municipalidad de Castro implementará una nueva política de apoyo al sector agrícola local, que incluye capacitación técnica, facilitación de mercados y programas de asociatividad para productores de la isla de Chiloé.</p>
+                        <div class="news-actions">
+                            <button class="news-action-btn">
+                                <i data-lucide="external-link"></i>
+                                Ver más en Mun. Castro
+                            </button>
+                        </div>
+                    </article>
+
+                    <article class="news-item" data-category="sag">
+                        <div class="news-meta">
+                            <span class="news-source">SAG</span>
+                            <span class="news-date">2 días</span>
+                        </div>
+                        <h3 class="news-title">Actualización en medidas de control fitosanitario para la región de Los Lagos</h3>
+                        <p class="news-content">El Servicio Agrícola y Ganadero (SAG) implementa nuevas medidas de control fitosanitario para proteger la producción agrícola de la región de Los Lagos, incluyendo protocolos específicos para el manejo de enfermedades vegetales.</p>
+                        <div class="news-actions">
+                            <button class="news-action-btn">
+                                <i data-lucide="external-link"></i>
+                                Ver más en SAG
+                            </button>
+                        </div>
+                    </article>
+
+                    <article class="news-item" data-category="insular">
+                        <div class="news-meta">
+                            <span class="news-source">El Insular</span>
+                            <span class="news-date">3 días</span>
+                        </div>
+                        <h3 class="news-title">Crecimiento del sector ganadero en Chiloé supera expectativas</h3>
+                        <p class="news-content">El sector ganadero de Chiloé registra un crecimiento del 12% en los últimos meses, impulsado por mejoras en la genética bovina y programas de apoyo técnico. Los productores locales destacan el aumento en la productividad y calidad de los productos.</p>
+                        <div class="news-actions">
+                            <button class="news-action-btn">
+                                <i data-lucide="external-link"></i>
+                                Ver más en El Insular
+                            </button>
+                        </div>
+                    </article>
+
+                    <article class="news-item" data-category="indap">
+                        <div class="news-meta">
+                            <span class="news-source">INDAP</span>
+                            <span class="news-date">1 semana</span>
+                        </div>
+                        <h3 class="news-title">Capacitación en técnicas de agricultura sostenible para pequeños productores</h3>
+                        <p class="news-content">INDAP realizará una serie de capacitaciones en técnicas de agricultura sostenible dirigidas a pequeños productores de la región de Los Lagos, con énfasis en prácticas agroecológicas y manejo responsable de recursos.</p>
+                        <div class="news-actions">
+                            <button class="news-action-btn">
+                                <i data-lucide="external-link"></i>
+                                Ver más en INDAP
+                            </button>
+                        </div>
+                    </article>
+                </div>
+                
+                <!-- Botón para agregar noticias personalizadas -->
+                <div class="news-actions-section">
+                    <button class="btn-primary" id="addNewsBtn">
+                        <i data-lucide="plus"></i>
+                        Agregar Noticia Personalizada
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Animales -->
+        <section id="animals-section" class="content-section">
+            <div class="section-header">
+                <h2>
+                    <i data-lucide="heart" class="section-icon animals-icon"></i>
+                    Manejo Sanitario de Animales
+                </h2>
+                <p class="section-subtitle">Información veterinaria y guías de salud animal</p>
+            </div>
+            <div class="animals-content">
+                <div class="animal-categories-grid">
+                    <div class="category-card">
+                        <i data-lucide="syringe"></i>
+                        <h3>Vacunación</h3>
+                        <p>Calendarios y protocolos de vacunación para diferentes especies</p>
+                    </div>
+                    <div class="category-card">
+                        <i data-lucide="apple"></i>
+                        <h3>Nutrición</h3>
+                        <p>Dietas balanceadas y requerimientos nutricionales</p>
+                    </div>
+                    <div class="category-card">
+                        <i data-lucide="stethoscope"></i>
+                        <h3>Diagnóstico</h3>
+                        <p>Síntomas y métodos de detección de enfermedades</p>
+                    </div>
+                    <div class="category-card">
+                        <i data-lucide="activity"></i>
+                        <h3>Prevención</h3>
+                        <p>Medidas preventivas y control sanitario</p>
+                    </div>
+                </div>
+                <div class="animal-guides">
+                    <h3>Guías Disponibles</h3>
+                    <div class="guide-list">
+                        <div class="guide-item">
+                            <i data-lucide="book"></i>
+                            <div>
+                                <h4>Manual de Vacunación Bovina</h4>
+                                <p>Protocolo completo de vacunación para ganado bovino</p>
+                            </div>
+                        </div>
+                        <div class="guide-item">
+                            <i data-lucide="book"></i>
+                            <div>
+                                <h4>Cuidados de Mascotas</h4>
+                                <p>Guía básica para el cuidado de perros y gatos</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Plantas -->
+        <section id="plants-section" class="content-section">
+            <div class="section-header">
+                <h2>
+                    <i data-lucide="sprout" class="section-icon plants-icon"></i>
+                    Manejo Sanitario de Plantas
+                </h2>
+                <p class="section-subtitle">Guías agrícolas y manejo fitosanitario</p>
+            </div>
+            <div class="plants-content">
+                <div class="plant-categories-grid">
+                    <div class="category-card">
+                        <i data-lucide="bug"></i>
+                        <h3>Control de Plagas</h3>
+                        <p>Identificación y control de insectos y ácaros</p>
+                    </div>
+                    <div class="category-card">
+                        <i data-lucide="leaf"></i>
+                        <h3>Fertilización</h3>
+                        <p>Programas de fertilización y nutrición vegetal</p>
+                    </div>
+                    <div class="category-card">
+                        <i data-lucide="shield"></i>
+                        <h3>Prevención</h3>
+                        <p>Estrategias preventivas de enfermedades</p>
+                    </div>
+                    <div class="category-card">
+                        <i data-lucide="scissors"></i>
+                        <h3>Poda</h3>
+                        <p>Técnicas de poda y manejo de cultivos</p>
+                    </div>
+                </div>
+                <div class="plant-guides">
+                    <h3>Recursos Agrícolas</h3>
+                    <div class="guide-list">
+                        <div class="guide-item">
+                            <i data-lucide="book"></i>
+                            <div>
+                                <h4>Manejo Integrado de Plagas</h4>
+                                <p>Estrategias sustentables de control fitosanitario</p>
+                            </div>
+                        </div>
+                        <div class="guide-item">
+                            <i data-lucide="book"></i>
+                            <div>
+                                <h4>Cultivos Orgánicos</h4>
+                                <p>Técnicas de agricultura sin agroquímicos</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Monitoreo Tizón Tardío -->
+        <section id="tizon-section" class="content-section">
+            <div class="section-header">
+                <h2>
+                    <i data-lucide="shield-alert" class="section-icon tizon-icon"></i>
+                    Monitoreo Tizón Tardío - INIA
+                </h2>
+                <p class="section-subtitle">Sistema de alertas para el cultivo de papa en Castro, Chiloé</p>
+            </div>
+            <div class="tizon-content">
+                <div class="tizon-info">
+                    <div class="info-card">
+                        <i data-lucide="info"></i>
+                        <div>
+                            <h3>Sobre el Sistema</h3>
+                            <p>Monitoreo meteorológico especializado para detectar condiciones favorables para el desarrollo del tizón tardío en cultivos de papa.</p>
+                            <a href="https://tizon.inia.cl" target="_blank" class="external-link">
+                                Ver sistema completo <i data-lucide="external-link"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tizon-stations">
+                    <h3>Estaciones de Monitoreo - Castro</h3>
+                    <div class="stations-grid">
+                        <div class="station-card">
+                            <div class="station-header">
+                                <h4>PIDPID</h4>
+                                <span class="alert-badge verde">VERDE</span>
+                            </div>
+                            <div class="station-details">
+                                <p><strong>Ubicación:</strong> Castro</p>
+                                <p><strong>Estado actual:</strong> No hay condiciones para el desarrollo del tizón tardío</p>
+                                <p><strong>Último reporte:</strong> 06 Nov (Verde) - 07 Nov (Sin datos)</p>
+                            </div>
+                        </div>
+                        
+                        <div class="station-card">
+                            <div class="station-header">
+                                <h4>QUILQUICO</h4>
+                                <span class="alert-badge sin-datos">SIN DATOS</span>
+                            </div>
+                            <div class="station-details">
+                                <p><strong>Ubicación:</strong> Castro</p>
+                                <p><strong>Estado actual:</strong> La estación meteorológica presenta inestabilidad de conexión</p>
+                                <p><strong>Último reporte:</strong> Sin datos disponibles</p>
+                            </div>
+                        </div>
+                        
+                        <div class="station-card">
+                            <div class="station-header">
+                                <h4>ISLA CHELIN</h4>
+                                <span class="alert-badge verde">VERDE</span>
+                            </div>
+                            <div class="station-details">
+                                <p><strong>Ubicación:</strong> Castro</p>
+                                <p><strong>Estado actual:</strong> No hay condiciones para el desarrollo del tizón tardío</p>
+                                <p><strong>Último reporte:</strong> 06 Nov (Verde) - 07 Nov (Sin datos)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tizon-alerts-legend">
+                    <h3>Leyenda de Alertas</h3>
+                    <div class="legend-grid">
+                        <div class="legend-item">
+                            <span class="alert-badge roja">ROJA</span>
+                            <p>Condiciones MUY FAVORABLES para el desarrollo del tizón. Se recomienda aplicación de fungicida.</p>
+                        </div>
+                        <div class="legend-item">
+                            <span class="alert-badge naranja">NARANJA</span>
+                            <p>Condiciones FAVORABLES para el desarrollo del tizón. Se recomienda aplicación de fungicida.</p>
+                        </div>
+                        <div class="legend-item">
+                            <span class="alert-badge amarilla">AMARILLA</span>
+                            <p>Condiciones MEDIO-BAJO para el desarrollo del tizón. Revisar el cultivo en los próximos 3 días.</p>
+                        </div>
+                        <div class="legend-item">
+                            <span class="alert-badge verde">VERDE</span>
+                            <p>No hay condiciones para el desarrollo del tizón tardío. No es necesaria aplicación de fungicida.</p>
+                        </div>
+                        <div class="legend-item">
+                            <span class="alert-badge azul">AZUL</span>
+                            <p>Primera alerta de la temporada. Revisar estado de otras estaciones cercanas.</p>
+                        </div>
+                        <div class="legend-item">
+                            <span class="alert-badge cafe">CAFÉ</span>
+                            <p>Inicio de temporada. Período desde emergencia del cultivo hasta primera alerta.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tizon-recommendations">
+                    <h3>Recomendaciones Generales</h3>
+                    <div class="recommendations-list">
+                        <div class="recommendation-item">
+                            <i data-lucide="calendar"></i>
+                            <p>Monitorear especialmente cultivos de junio-julio que son vulnerables desde septiembre en adelante.</p>
+                        </div>
+                        <div class="recommendation-item">
+                            <i data-lucide="eye"></i>
+                            <p>Aumentar la vigilancia por incremento del inóculo, especialmente desde papas voluntarias.</p>
+                        </div>
+                        <div class="recommendation-item">
+                            <i data-lucide="smartphone"></i>
+                            <p>Registrarse en el sistema para recibir alertas personalizadas por SMS o email.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Productos -->
+        <section id="products-section" class="content-section">
+            <div class="section-header">
+                <h2>
+                    <i data-lucide="shopping-bag" class="section-icon products-icon"></i>
+                    Venta de Productos
+                </h2>
+                <p class="section-subtitle">Gestiona y publica tus productos con fotos y descripción</p>
+            </div>
+            <div class="products-content">
+                <button class="add-product-btn" id="addProductBtn">
+                    <i data-lucide="plus"></i>
+                    Agregar Producto
+                </button>
+                <div class="products-grid" id="productsGrid">
+                    <div class="products-empty">
+                        <i data-lucide="shopping-cart" class="empty-icon"></i>
+                        <h3>No hay productos</h3>
+                        <p>Agrega tu primer producto para empezar a vender</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección Guía Telefónica -->
+        <section id="guia-telefonica-section" class="content-section">
+            <div class="section-header">
+                <h2>
+                    <i data-lucide="phone" class="section-icon"></i>
+                    Guía Telefónica
+                </h2>
+                <p class="section-subtitle">Directorio de servicios locales de Castro, Chiloé</p>
+            </div>
+            <div class="telefonica-content">
+                <div class="telefonica-grid">
+                    <div class="telefonica-card">
+                        <div class="card-header">
+                            <h3>AGROABONOS</h3>
+                            <i data-lucide="wheat" class="card-icon"></i>
+                        </div>
+                        <div class="card-content">
+                            <p class="phone-number">65 2 635928</p>
+                            <p class="service-description">Productos agrícolas y fertilizantes</p>
+                        </div>
+                        <div class="card-actions">
+                            <button class="call-btn" onclick="window.location.href='tel:652635928'">
+                                <i data-lucide="phone-call"></i>
+                                Llamar
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="telefonica-card">
+                        <div class="card-header">
+                            <h3>COOPRINSEM</h3>
+                            <i data-lucide="truck" class="card-icon"></i>
+                        </div>
+                        <div class="card-content">
+                            <p class="phone-number">65 2 627630</p>
+                            <p class="service-description">Cooperativa de productos y servicios</p>
+                        </div>
+                        <div class="card-actions">
+                            <button class="call-btn" onclick="window.location.href='tel:652627630'">
+                                <i data-lucide="phone-call"></i>
+                                Llamar
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="telefonica-card">
+                        <div class="card-header">
+                            <h3>COVEPA sucursal Castro</h3>
+                            <i data-lucide="shopping-cart" class="card-icon"></i>
+                        </div>
+                        <div class="card-content">
+                            <p class="phone-number">65 2 636800</p>
+                            <p class="service-description">Cooperativa de venta y producción agrícola</p>
+                        </div>
+                        <div class="card-actions">
+                            <button class="call-btn" onclick="window.location.href='tel:652636800'">
+                                <i data-lucide="phone-call"></i>
+                                Llamar
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="telefonica-card">
+                        <div class="card-header">
+                            <h3>Veterinaria San Francisco</h3>
+                            <i data-lucide="heart" class="card-icon"></i>
+                        </div>
+                        <div class="card-content">
+                            <p class="phone-number">65 2 635382</p>
+                            <p class="service-description">Atención veterinaria para animales</p>
+                        </div>
+                        <div class="card-actions">
+                            <button class="call-btn" onclick="window.location.href='tel:652635382'">
+                                <i data-lucide="phone-call"></i>
+                                Llamar
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="telefonica-card">
+                        <div class="card-header">
+                            <h3>Veterinaria Pudulhuapi</h3>
+                            <i data-lucide="shield-check" class="card-icon"></i>
+                        </div>
+                        <div class="card-content">
+                            <p class="phone-number">65 2 635283</p>
+                            <p class="service-description">Servicios veterinarios especializados</p>
+                        </div>
+                        <div class="card-actions">
+                            <button class="call-btn" onclick="window.location.href='tel:652635283'">
+                                <i data-lucide="phone-call"></i>
+                                Llamar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección Personal -->
+        <section id="personal-section" class="content-section">
+            <div class="section-header">
+                <h2>
+                    <i data-lucide="edit" class="section-icon personal-icon"></i>
+                    Mi Información
+                </h2>
+                <p class="section-subtitle">Contenido personalizado y tus actualizaciones</p>
+            </div>
+            <div class="personal-content">
+                <button class="add-content-btn" id="addPersonalContent">
+                    <i data-lucide="plus"></i>
+                    Agregar Información Personal
+                </button>
+                <div class="personal-items">
+                    <div class="personal-item">
+                        <div class="item-header">
+                            <h3>Recordatorio de riego</h3>
+                            <span class="item-date">Hoy</span>
+                        </div>
+                        <p>Regar las plantas del jardín por la mañana temprano.</p>
+                        <div class="item-actions">
+                            <button class="edit-btn">
+                                <i data-lucide="edit"></i>
+                                Editar
+                            </button>
+                            <button class="delete-btn">
+                                <i data-lucide="trash"></i>
+                                Eliminar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Botón de Acción Flotante -->
+    <button class="fab" id="fabBtn">
+        <i data-lucide="plus"></i>
+    </button>
+
+    <!-- Modal para Agregar Contenido -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Agregar Información Personal</h3>
+                <button class="modal-close" id="modalClose">
+                    <i data-lucide="x"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="personalContentForm">
+                    <div class="form-group">
+                        <label for="contentTitle">Título</label>
+                        <input type="text" id="contentTitle" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="contentText">Contenido</label>
+                        <textarea id="contentText" rows="4" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="contentCategory">Categoría</label>
+                        <select id="contentCategory">
+                            <option value="general">General</option>
+                            <option value="agriculture">Agricultura</option>
+                            <option value="veterinary">Veterinaria</option>
+                            <option value="reminder">Recordatorio</option>
+                        </select>
+                    </div>
+                    <div class="modal-actions">
+                        <button type="button" class="btn-secondary" id="cancelBtn">Cancelar</button>
+                        <button type="submit" class="btn-primary">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="scripts/app.js"></script>
+    <script>
+        // Registrar Service Worker
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/service-worker.js')
+                .then(registration => console.log('SW registered'))
+                .catch(registrationError => console.log('SW registration failed'));
+        }
+
+        // Inicializar Lucide Icons
+        lucide.createIcons();
+    </script>
+</body>
+</html>
